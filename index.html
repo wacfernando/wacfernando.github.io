@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Adheesha Fernando | Data Science Portfolio</title>
+<meta name="description" content="Data science undergraduate, researcher and application support intern. ML systems, research and projects by Adheesha Fernando.">
+<meta name="theme-color" content="#000000">
+<meta property="og:title" content="Adheesha Fernando | Data Science Portfolio">
+<meta property="og:description" content="ML systems, research and projects by a final-year data science undergraduate.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23000'/%3E%3Cg stroke='%23a78bfa' stroke-width='1.6' stroke-linecap='round'%3E%3Cline x1='6' y1='24' x2='16' y2='7'/%3E%3Cline x1='16' y1='7' x2='27' y2='22'/%3E%3Cline x1='6' y1='24' x2='27' y2='22'/%3E%3C/g%3E%3Ccircle cx='16' cy='7' r='3.4' fill='%2367e8f9'/%3E%3Ccircle cx='6' cy='24' r='3.4' fill='%23f472b6'/%3E%3Ccircle cx='27' cy='22' r='3.4' fill='%23a78bfa'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#000; --card:#0b0b10; --line:#22222d; --text:#f4f4f6; --muted:#9b9bab;
+  --violet:#a78bfa; --cyan:#67e8f9; --pink:#f472b6; --amber:#fbbf24;
+  --display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;
+  --body:'DM Sans','Segoe UI',system-ui,sans-serif;
+  --grad:linear-gradient(100deg,#fff 10%,var(--violet) 55%,var(--cyan));
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.65;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,30%),rgba(167,139,250,.13),transparent 70%)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--display);line-height:1.05;letter-spacing:-.02em}
+
+#dots{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0}
+
+nav a.logo{display:flex;align-items:center}
+nav a.logo svg{transition:transform .5s cubic-bezier(.2,.7,.2,1),filter .3s}
+nav a.logo:hover svg{transform:rotate(120deg) scale(1.1);filter:drop-shadow(0 0 8px rgba(167,139,250,.8))}
+
+/* nav */
+nav{position:sticky;top:0;z-index:10;backdrop-filter:blur(14px);background:rgba(0,0,0,.65);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:60px}
+nav b{font-family:var(--display);font-size:1.15rem}
+nav ul{display:flex;gap:26px;list-style:none}
+nav a{text-decoration:none;color:var(--muted);font-size:.95rem;transition:color .2s}
+nav a:hover{color:var(--text)}
+@media(max-width:640px){nav ul{gap:14px}nav a{font-size:.85rem}}
+
+.job{position:relative;border-left:2px solid var(--line);padding-left:28px;max-width:720px}
+.job::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--cyan);box-shadow:0 0 18px var(--cyan)}
+.job .role{font-family:var(--display);font-size:1.6rem;line-height:1.2}
+.job .co{color:var(--cyan);margin-top:4px}
+.job .when{color:var(--muted);font-size:.9rem;margin-bottom:12px}
+.job ul{margin-left:18px;color:#d0d0d8}
+.job li{margin-bottom:6px}
+
+/* levels 2 and 5: full gradient */
+h2,.job .role,.hl{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+h2,.job .role{width:fit-content}
+.hl{font-weight:500}
+
+/* level 3: white fading into each card's accent color */
+.card h3,.sk h3{background:linear-gradient(100deg,#fff 20%,var(--c));-webkit-background-clip:text;background-clip:text;color:transparent;width:fit-content}
+
+/* hero */
+.hero{position:relative;min-height:calc(100vh - 60px);display:flex;align-items:center;overflow:hidden}
+#net{position:absolute;inset:0;width:100%;height:100%}
+.hero .wrap{pointer-events:none}
+.hero h1{font-size:clamp(2.6rem,7vw,5.6rem);max-width:11em;font-weight:800;
+  background:linear-gradient(100deg,#fff 20%,var(--violet) 60%,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:rise .9s .1s cubic-bezier(.2,.7,.2,1) both}
+.hi{color:var(--cyan);font-size:1.1rem;margin-bottom:16px;animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.hero p.lead{margin-top:22px;max-width:560px;font-size:1.2rem;color:#d6d6de;animation:rise .9s .15s cubic-bezier(.2,.7,.2,1) both}
+.hero .row{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap;pointer-events:auto;animation:rise .9s .3s cubic-bezier(.2,.7,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+.btn{display:inline-block;padding:12px 24px;border-radius:999px;text-decoration:none;font-weight:500;border:1px solid var(--line);transition:transform .2s,box-shadow .2s,border-color .2s}
+.btn.main{background:var(--text);color:#000;border-color:var(--text)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(167,139,250,.35);border-color:var(--violet)}
+
+#top{position:fixed;right:22px;bottom:22px;z-index:15;width:48px;height:48px;border-radius:50%;cursor:pointer;
+  display:grid;place-items:center;color:var(--text);background:rgba(11,11,16,.85);backdrop-filter:blur(10px);
+  border:1px solid var(--line);opacity:0;transform:translateY(14px);pointer-events:none;
+  transition:opacity .3s,transform .3s,border-color .2s,box-shadow .2s}
+#top.show{opacity:1;transform:none;pointer-events:auto}
+#top:hover{border-color:var(--violet);box-shadow:0 0 22px rgba(167,139,250,.45)}
+
+/* sections */
+section{position:relative;z-index:1;padding:96px 0}
+h2{font-size:clamp(2rem,5vw,3.2rem);margin-bottom:14px}
+.sub{color:var(--muted);max-width:600px;margin-bottom:38px}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+
+/* about */
+.about{display:grid;grid-template-columns:1.4fr 1fr;gap:48px}
+.about p{color:#d0d0d8;margin-bottom:16px}
+.facts{display:grid;gap:14px;align-content:start}
+.fact{border:1px solid var(--line);border-radius:16px;padding:16px 18px;background:var(--card)}
+.fact small{color:var(--muted);display:block}
+.fact span{font-family:var(--display);font-size:1.15rem}
+@media(max-width:760px){.about{grid-template-columns:1fr}}
+
+/* projects */
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px}
+.chip{background:none;border:1px solid var(--line);color:var(--muted);padding:8px 18px;border-radius:999px;font:inherit;cursor:pointer;transition:.2s}
+.chip:hover{color:var(--text);border-color:var(--muted)}
+.chip.on{color:#000;background:var(--text);border-color:var(--text)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;align-items:start}
+.card{--c:var(--violet);background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px;cursor:pointer;
+  transition:border-color .25s,transform .25s,box-shadow .25s;text-align:left;color:inherit;font:inherit;width:100%}
+.card:hover{border-color:var(--c);transform:translateY(-4px);box-shadow:0 14px 40px -14px var(--c)}
+.card .k{color:var(--c);font-size:.85rem;font-weight:500}
+.card h3{font-size:1.6rem;margin:6px 0 8px}
+.card .s{color:#c4c4cf;font-size:.98rem}
+.more{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease}
+.more>div{overflow:hidden}
+.card[aria-expanded=true] .more{grid-template-rows:1fr}
+.more ul{margin:16px 0 4px 18px;color:#d8d8e0;font-size:.95rem}
+.more li{margin-bottom:6px}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.tags span{font-size:.8rem;padding:3px 11px;border-radius:999px;border:1px solid var(--c);color:var(--c)}
+.hint{margin-top:14px;font-size:.82rem;color:var(--muted)}
+.card[aria-expanded=true] .hint{display:none}
+.card.hide{display:none}
+
+#bar{position:fixed;top:0;left:0;height:3px;width:100%;z-index:20;transform:scaleX(0);transform-origin:left;
+  background:linear-gradient(90deg,var(--violet),var(--cyan),var(--pink))}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.sk{border:1px solid var(--line);border-radius:20px;padding:24px;background:var(--card)}
+.sk h3{font-size:1.25rem;margin-bottom:14px}
+.sk div{display:flex;flex-wrap:wrap;gap:8px}
+.sk span{padding:6px 14px;border-radius:999px;background:#14141c;font-size:.9rem;transition:.2s;cursor:default}
+.sk span:hover{background:var(--c);color:#000;transform:translateY(-2px)}
+.sk.wide{margin-top:20px}
+
+/* fitness + contact */
+.split{border:1px solid var(--line);border-radius:28px;padding:44px;background:linear-gradient(135deg,#0c0a14,#06080c)}
+.split p{max-width:620px;color:#d0d0d8}
+.links{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
+footer{position:relative;z-index:1;text-align:center;color:var(--muted);padding:40px 0 60px;font-size:.9rem}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+  <div id="bar" aria-hidden="true"></div>
+  <canvas id="dots" aria-hidden="true"></canvas>
+<nav><div class="wrap">
+  <a class="logo" href="#" aria-label="Back to top">
+    <svg viewBox="0 0 32 32" width="34" height="34" fill="none">
+      <g stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" opacity=".7">
+        <line x1="6" y1="24" x2="16" y2="7"/><line x1="16" y1="7" x2="27" y2="22"/>
+        <line x1="6" y1="24" x2="27" y2="22"/><line x1="16" y1="7" x2="16" y2="17"/>
+        <line x1="16" y1="17" x2="6" y2="24"/><line x1="16" y1="17" x2="27" y2="22"/>
+      </g>
+      <circle cx="16" cy="7" r="3" fill="#67e8f9"/>
+      <circle cx="6" cy="24" r="3" fill="#f472b6"/>
+      <circle cx="27" cy="22" r="3" fill="#a78bfa"/>
+      <circle cx="16" cy="17" r="2.2" fill="#fff"/>
+    </svg>
+  </a>
+  <ul><li><a href="#about">About</a><li><a href="#experience">Experience</a></li></li><li><a href="#projects">Projects</a></li><li><a href="#skills">Skills</a></li><li><a href="#contact">Contact</a></li></ul>
+</div></nav>
+
+<header class="hero">
+  <canvas id="net" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <p class="hi">Hi, I'm Adheesha</p>
+    <h1>Data science, research and a whole lot of iron.</h1>
+    <p class="lead">Data science undergraduate, researcher and <span class="hl">application support intern</span> at Acumatica.</p>
+    <div class="row">
+      <a class="btn main" href="#projects">See my projects</a>
+      <a class="btn" href="#contact">Get in touch</a>
+    </div>
+  </div>
+</header>
+
+<section id="about"><div class="wrap">
+  <h2 class="reveal">About me</h2>
+  <div class="about reveal">
+    <div>
+      <!-- EDIT: rewrite this in your own voice -->
+      <p>I'm a final-year BSc Data Science student at NSBM Green University in Colombo, Sri Lanka. I like taking a messy real-world question and turning it into <span class="hl">working machine learning systems</span> and then into something people can actually click and use.</p>
+      <p>Outside of code I'm a huge bodybuilding fitness enthusiast, and I'm just as comfortable explaining things to an audience as I am researching.</p>
+    </div>
+    <div class="facts">
+      <div class="fact"><small>Studying</small><span>BSc Data Science, final year</span></div>
+      <div class="fact"><small>University</small><span>NSBM Green University</span></div>
+      <div class="fact"><small>Based in</small><span>Colombo, Sri Lanka</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="experience"><div class="wrap">
+  <h2 class="reveal">Experience</h2>
+  <p class="sub reveal">Where I'm learning how real products get supported.</p>
+  <div class="job reveal">
+    <div class="role">Application Support Consultant (Intern)</div>
+    <div class="co">Acumatica · Platform team</div>
+    <div class="when">2026 – Present · 8 months and counting</div>
+    <ul>
+      <li>Support customers and partners on the Acumatica platform side of the product</li>
+      <!-- EDIT: add 2-3 real things you do, e.g. troubleshooting issues, working with databases/SQL, writing documentation, helping customers -->
+    </ul>
+  </div>
+</div></section>
+
+<section id="projects"><div class="wrap">
+  <h2 class="reveal">Projects</h2>
+  <p class="sub reveal">Click a card to see what's inside.</p>
+  <div class="chips reveal" id="chips"></div>
+  <div class="grid" id="grid"></div>
+</div></section>
+
+<section id="skills"><div class="wrap">
+  <h2 class="reveal">Technical Skills</h2>
+  <p class="sub reveal">The tools I reach for most.</p>
+  <div class="skills reveal">
+    <div class="sk" style="--c:var(--violet)"><h3>Machine learning</h3><div><span>Random Forest</span><span>XGBoost</span><span>Gradient Boosting</span><span>scikit-learn</span><span>NLP</span><span>Prompting</span></div></div>
+    <div class="sk" style="--c:var(--cyan)"><h3>Data &amp; geospatial</h3><div><span>Python</span><span>Pandas</span><span>OSMnx</span><span>QGIS</span><span>Matplotlib</span><span>SQL</span></div></div>
+    <div class="sk" style="--c:var(--pink)"><h3>Building apps</h3><div><span>FastAPI</span><span>Flask</span><span>PHP</span><span>MySQL</span><span>HTML / CSS / JS</span></div></div>
+  </div>
+  <div class="sk wide reveal" style="--c:var(--amber)">
+    <h3>How I work</h3>
+    <div>
+      <span>Communication</span>
+      <span>Decision making</span>
+      <span>Collaboration</span>
+      <span>Leadership</span>
+      <span>Taking initiative</span>
+    </div>
+  </div>
+</div></section>
+
+<section id="contact"><div class="wrap">
+  <div class="split reveal">
+    <h2>Beyond the code</h2>
+    <p>Outside of tech, I'm really into the gym and fitness. Showing up every day, even when it's boring, is a habit that carries over into research and engineering more than you'd think.</p>
+    <div class="links">
+      <!-- EDIT: replace each # with your real link -->
+      <a class="btn main" href="mailto:fernandoadheesha392@gmail.com">Email me</a>
+      <a class="btn" href="https://www.linkedin.com/in/adheesha-fernando-5b8975230" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/wacfernando" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="https://instagram.com/itzadheesha" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+</div></section>
+<button id="top" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+<footer>© <span id="yr"></span> Adheesha</footer>
+
+<script>
+/* ---------- EDIT YOUR PROJECTS HERE ---------- */
+const projects = [
+  { name:'MenuPrice', cat:'ml', label:'Machine learning', color:'var(--violet)',
+    sum:'A pricing recommendation system for restaurants on Colombo UberEATS.',
+    pts:['Random Forest and XGBoost models across Budget, Mid-Range and Fine Dining tiers',
+         'Demand-signal mechanism with tier-specific formulas derived from Pearson correlation analysis',
+         'A/B model versioning, and a FastAPI web app with a Market Insights card',
+         'Accepted for oral presentation at NSRSIT 2026'],
+    tags:['Python','XGBoost','Random Forest','FastAPI'] },
+    { name:'Student Dropout Prediction', cat:'ml', label:'Machine learning', color:'var(--cyan)',
+    sum:'A machine learning system that flags students at risk of dropping out so support can reach them early.',
+    pts:['Trained on 4,424 student records with 36 features, including grades, financial indicators and admission details',
+         'Compared five models (Logistic Regression, Decision Tree, Random Forest, SVM, Gradient Boosting)',
+         'Gradient Boosting won: 86.75% accuracy, 77.89% F1 and about 0.93 ROC-AUC',
+         'Outputs a dropout prediction plus a risk probability'],
+    tags:['Python','Gradient Boosting','scikit-learn','Classification'] },
+  { name:'GeoValuate', cat:'sys', label:'System', color:'var(--pink)',
+    sum:'A property valuation platform trained on Sri Lanka house price data.',
+    pts:['PHP and MySQL application with a Gradient Boosting model served through Flask',
+         'Audited an inherited codebase that had fake ML logic, then rebuilt the whole pipeline from scratch'],
+    tags:['PHP','MySQL','Flask','Gradient Boosting'] },
+  { name:'Pettah vs Colombo 7', cat:'res', label:'Research', color:'var(--amber)',
+    sum:'Comparing how walkable two very different parts of Colombo really are.',
+    pts:['Pedestrian accessibility analysis built with OSMnx and QGIS',
+         'IEEE-format paper, slides and a dataset submission package'],
+    tags:['OSMnx','QGIS','Urban computing'] },
+  { name:'Prompting Strategies on GSM8K', cat:'res', label:'Research', color:'var(--violet)',
+    sum:'Zero-shot vs few-shot vs chain-of-thought, tested on grade-school maths.',
+    pts:['Individual NLP research paper for the DS401.3 module',
+         'Compares the three prompting strategies on the GSM8K benchmark'],
+    tags:['NLP','LLMs','GSM8K'] }
+];
+const filters = [['all','All'],['ml','Machine learning'],['sys','Systems'],['res','Research']];
+
+/* ---------- render projects ---------- */
+const grid = document.getElementById('grid'), chips = document.getElementById('chips');
+projects.forEach(p => {
+  const b = document.createElement('button');
+  b.className = 'card reveal'; b.dataset.cat = p.cat; b.style.setProperty('--c', p.color);
+  b.setAttribute('aria-expanded','false');
+  b.innerHTML = `<div class="k">${p.label}</div><h3>${p.name}</h3><div class="s">${p.sum}</div>
+    <div class="more"><div><ul>${p.pts.map(x=>`<li>${x}</li>`).join('')}</ul></div></div>
+    <div class="tags">${p.tags.map(t=>`<span>${t}</span>`).join('')}</div><div class="hint">Click to expand</div>`;
+  b.onclick = () => b.setAttribute('aria-expanded', b.getAttribute('aria-expanded')==='true' ? 'false' : 'true');
+  grid.appendChild(b);
+});
+filters.forEach(([k,l],i) => {
+  const c = document.createElement('button');
+  c.className = 'chip' + (i===0?' on':''); c.textContent = l;
+  c.onclick = () => {
+    document.querySelectorAll('.chip').forEach(x=>x.classList.remove('on')); c.classList.add('on');
+    document.querySelectorAll('.card').forEach(card => card.classList.toggle('hide', k!=='all' && card.dataset.cat!==k));
+  };
+  chips.appendChild(c);
+});
+
+/* ---------- scroll reveal ---------- */
+const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.12});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ---------- cursor glow ---------- */
+addEventListener('pointermove', e => {
+  document.body.style.setProperty('--mx', e.clientX+'px');
+  document.body.style.setProperty('--my', e.clientY+'px');
+});
+
+/* ---------- hero: neural-network style canvas that reacts to the mouse ---------- */
+(() => {
+  const cv = document.getElementById('net'), x = cv.getContext('2d');
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let W, H, pts = [], m = {x:-999, y:-999};
+  const cols = ['#a78bfa','#67e8f9','#f472b6'];
+  function size(){
+    const d = devicePixelRatio || 1; W = cv.offsetWidth; H = cv.offsetHeight;
+    cv.width = W*d; cv.height = H*d; x.setTransform(d,0,0,d,0,0);
+    const n = Math.min(90, Math.floor(W*H/14000));
+    pts = Array.from({length:n}, () => ({x:Math.random()*W, y:Math.random()*H, vx:(Math.random()-.5)*.35, vy:(Math.random()-.5)*.35, c:cols[Math.floor(Math.random()*3)]}));
+  }
+  function draw(){
+    x.clearRect(0,0,W,H);
+    pts.forEach(p => {
+      if(!still){ p.x += p.vx; p.y += p.vy; if(p.x<0||p.x>W) p.vx*=-1; if(p.y<0||p.y>H) p.vy*=-1; }
+      const dm = Math.hypot(p.x-m.x, p.y-m.y);
+      if(dm<140 && !still){ p.x += (p.x-m.x)/dm*1.2; p.y += (p.y-m.y)/dm*1.2; }
+    });
+    for(let i=0;i<pts.length;i++){
+      const a = pts[i];
+      for(let j=i+1;j<pts.length;j++){
+        const b = pts[j], d = Math.hypot(a.x-b.x, a.y-b.y);
+        if(d<130){ x.strokeStyle = `rgba(167,139,250,${(1-d/130)*.35})`; x.beginPath(); x.moveTo(a.x,a.y); x.lineTo(b.x,b.y); x.stroke(); }
+      }
+      const dm = Math.hypot(a.x-m.x, a.y-m.y);
+      if(dm<180){ x.strokeStyle = `rgba(103,232,249,${(1-dm/180)*.6})`; x.beginPath(); x.moveTo(a.x,a.y); x.lineTo(m.x,m.y); x.stroke(); }
+      x.fillStyle = a.c; x.beginPath(); x.arc(a.x,a.y,2.2,0,6.283); x.fill();
+    }
+    if(!still) requestAnimationFrame(draw);
+  }
+  addEventListener('pointermove', e => { const r = cv.getBoundingClientRect(); m.x = e.clientX-r.left; m.y = e.clientY-r.top; });
+  addEventListener('resize', size);
+  size(); draw();
+})();
+/* ---------- page background: rippling dot grid that glows near the cursor ---------- */
+(() => {
+  const cv = document.getElementById('dots'), g = cv.getContext('2d');
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const GAP = 38;
+  let W, H, t = 0, m = {x:-999, y:-999, tx:-999, ty:-999};
+  function size(){
+    const d = Math.min(devicePixelRatio || 1, 2);
+    W = innerWidth; H = innerHeight;
+    cv.width = W*d; cv.height = H*d; g.setTransform(d,0,0,d,0,0);
+  }
+  function frame(){
+    const hero = document.querySelector('.hero').offsetHeight;
+    const op = Math.min(1, Math.max(0, (scrollY - hero*.5) / (hero*.4)));
+    cv.style.opacity = op;
+    if(op > 0){
+      m.x += (m.tx-m.x)*.12; m.y += (m.ty-m.y)*.12; t += .015;
+      g.clearRect(0,0,W,H);
+      for(let x = GAP/2; x < W; x += GAP){
+        for(let y = GAP/2; y < H; y += GAP){
+          const d = Math.hypot(x-m.x, y-m.y);
+          const near = Math.max(0, 1 - d/190);
+          const wave = (Math.sin(t + x*.012 + y*.012) + 1) / 2;
+          g.fillStyle = `hsla(${255 - near*70},85%,72%,${.13 + wave*.07 + near*.75})`;
+          g.beginPath(); g.arc(x, y, 1 + wave*.6 + near*2.6, 0, 6.283); g.fill();
+        }
+      }
+    }
+    if(!still) requestAnimationFrame(frame);
+  }
+  addEventListener('pointermove', e => { m.tx = e.clientX; m.ty = e.clientY; });
+  addEventListener('resize', size);
+  if(still) addEventListener('scroll', frame);
+  size(); frame();
+})();
+</script>
+</body>
+</html>
